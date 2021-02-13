@@ -47,11 +47,26 @@ function generateRandomLetters(n) {
   return randomLettersArray.toString().replace(/,/g, '');
 }
 
+// This function returns a random special character.
+function generateRandomSpecialCharacter() {
+  var specialCharacterOptions = ["!", "@", "#", "$", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]", ";", ":", "'", "\"", "\,", "<", ".", ">", "?", "/", "\\", "|", "~", "`"];
+  var randomNumber = Math.floor(Math.random() * (specialCharacterOptions.length-1));
+  return specialCharacterOptions[randomNumber];
+}
 
+// This function returns an array of random special characters the size of n.
+function generateRandomSpecialCharacters(n) {
+  var randomSpecialArray = [];
+  for (i=0; i < n; i++) {
+    var generatedRandomSpecial = generateRandomSpecialCharacter();
+    randomSpecialArray.push(generatedRandomSpecial);
+  }
+  return randomSpecialArray.toString().replace(/,/g, '');
+}
 
-// 
+// This is where we test
 function generatePassword() {
-  var generatedPassword = generateRandomLetters(7);
+  var generatedPassword = generateRandomSpecialCharacters(7);
   return generatedPassword;
 }
 
