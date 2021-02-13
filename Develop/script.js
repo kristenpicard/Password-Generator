@@ -20,19 +20,22 @@ function generateRandomUppercaseLetter() {
   var randomNumberBetween0an26 = Math.floor(Math.random() * 25);
   return uppercaseAlphabet[randomNumberBetween0an26];
 }
+function generateRandomUpperOrLowercaseLetter() {
+  var randomNumberBetween0and9 = Math.floor(Math.random() * 10);
+  if (randomNumberBetween0and9 < 5) {
+    var generatedRandomLetter = generateRandomLowercaseLetter();
+  }
+  else { 
+    var generatedRandomLetter = generateRandomUppercaseLetter();
+  }
+  return generatedRandomLetter;
+}
 
 function generateRandomLetters(n) {
   var randomLettersArray = [];
   for (i=0; i < n; i++) {
-    var randomNumberBetween0and9 = Math.floor(Math.random() * 10);
-    if (randomNumberBetween0and9 < 5) {
-      var generatedRandomLetter = generateRandomLowercaseLetter();
-    }
-    else { 
-      var generatedRandomLetter = generateRandomUppercaseLetter();
-    }
+    var generatedRandomLetter = generateRandomUpperOrLowercaseLetter();
     randomLettersArray.push(generatedRandomLetter);
-    
   }
   return randomLettersArray.toString().replace(/,/g, '');
 }
