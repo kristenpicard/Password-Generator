@@ -53,6 +53,7 @@ function generateRandomSpecialCharacter() {
   return specialCharacterOptions[randomNumber];
 }
 
+// This function returns a random set of characters.
 function generatePasswordBasedOnOptions(n, upper, lower, special, number) {
   var randomPasswordArray = [];
   while (randomPasswordArray.length -1 <= n) {
@@ -78,7 +79,7 @@ function generatePasswordBasedOnOptions(n, upper, lower, special, number) {
   return randomPasswordArray.toString().replace(/,/g, '');;
 }
 
-// This is where we test
+// This returns the generated password.
 function generatePassword(size, upper, lower, special, number) {
   var generatedPassword = generatePasswordBasedOnOptions(size, upper, lower, special, number);
   return generatedPassword;
@@ -88,18 +89,19 @@ function generatePassword(size, upper, lower, special, number) {
 function writePassword() {
   
   size = 0
+
+  // Prompts the user for size.
   while (size < 8 || size > 128) {
     var size = prompt("How many characters would you like? (8-128)", 12);
     size = parseInt(size);
   }
-  
-  
   
   upper = "?";
   lower = "?";
   number = "?";
   special = "?";
 
+  // Prompts the user for the various options for their password.
   while (upper != "Y" && lower != "Y") {
     var upper = prompt("Would you like upper case letters? (Y/N) At least 1 Character is required.", "Y");
     var lower = prompt("Would you like lower case letters? (Y/N) At least 1 Character is required.", "Y");
@@ -111,8 +113,7 @@ function writePassword() {
     var number = prompt("Would you like numbers? (Y/N)", "Y");
   }
   
-
-
+  // Convert to booleans.
   if (upper == "Y") {
     upper = true;
   } else if (upper == "N"){
@@ -134,13 +135,10 @@ function writePassword() {
     number = false;
   }
 
-
-
+  // generate and display password
   var password = generatePassword(size, upper, lower, special, number);
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
