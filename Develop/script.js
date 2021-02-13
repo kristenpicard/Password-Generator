@@ -53,18 +53,24 @@ function generateRandomSpecialCharacter() {
   return specialCharacterOptions[randomNumber];
 }
 
-function generateUpperLowerSpecialNumberPassword(n) {
+function generatePasswordBasedOnOptions(n, upper, lower, special, number) {
   var randomPasswordArray = [];
   while (randomPasswordArray.length -1 <= n) {
-    var randomNumber = Math.floor(Math.random() * 3);
-    if (randomNumber != 3) {
-      if (randomNumber == 0) {
+    var randomNumber = Math.floor(Math.random() * 5);
+    if (randomNumber != 5) {
+      if (randomNumber == 0 && upper == true && lower == true) {
         randomPasswordArray.push(generateRandomLetter("Both"));
+      }   
+      else if (randomNumber == 1 && upper == true && lower == false) {
+        randomPasswordArray.push(generateRandomLetter("Upper"));
+      } 
+      else if (randomNumber == 2 && upper == false && lower == true) {
+        randomPasswordArray.push(generateRandomLetter("Lower"));
       }
-      else if (randomNumber == 1) {
+      else if (randomNumber == 3 && special == true) {
         randomPasswordArray.push(generateRandomSpecialCharacter());
       }
-      else if (randomNumber == 2) {
+      else if (randomNumber == 4 && number == true) {
         randomPasswordArray.push(generateRandomNumber());
       }
     }
@@ -73,20 +79,64 @@ function generateUpperLowerSpecialNumberPassword(n) {
 }
 
 // This is where we test
-function generatePassword() {
-  var upper = true;
-  var lower = true;
-  var special = true;
-  var number = true;
-  if (upper === true && lower === true && special === true && number === true) {
-    var generatedPassword = generateUpperLowerSpecialNumberPassword(7);
-  }
+function generatePassword(size, upper, lower, special, number) {
+  var generatedPassword = generatePasswordBasedOnOptions(size, upper, lower, special, number);
   return generatedPassword;
 }
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  
+  size = 0
+  while (size < 8 || size > 128) {
+    var size = prompt("How many characters would you like? (8-128)", 12);
+    size = parseInt(size);
+  }
+  
+  
+  
+  upper = "?";
+  lower = "?";
+  number = "?";
+  special = "?";
+
+  while (upper != "Y" && lower != "Y") {
+    var upper = prompt("Would you like upper case letters? (Y/N) At least 1 Character is required.", "Y");
+    var lower = prompt("Would you like lower case letters? (Y/N) At least 1 Character is required.", "Y");
+  }
+  while (special != "Y" && special != "N"){
+    var special = prompt("Would you like special characters? (Y/N)", "Y");
+  }
+  while (number != "Y" && number != "N") {
+    var number = prompt("Would you like numbers? (Y/N)", "Y");
+  }
+  
+
+
+  if (upper == "Y") {
+    upper = true;
+  } else if (upper == "N"){
+    upper = false;
+  }
+  if (lower == "Y") {
+    lower = true;
+  } else if (upper == "N"){
+    lower = false;
+  }
+  if (special == "Y") {
+    special = true;
+  } else if (upper == "N"){
+    special = false;
+  }
+  if (number == "Y") {
+    number = true;
+  } else if (upper == "N"){
+    number = false;
+  }
+
+
+
+  var password = generatePassword(size, upper, lower, special, number);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
