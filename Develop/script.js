@@ -38,11 +38,19 @@ function generateRandomUpperOrLowercaseLetter() {
 }
 
 // This function returns an array of random upper and lower case letters the size of n. 
-function generateRandomLetters(n) {
+function generateRandomLetters(n, option) {
   var randomLettersArray = [];
   for (i=0; i < n; i++) {
-    var generatedRandomLetter = generateRandomUpperOrLowercaseLetter();
-    randomLettersArray.push(generatedRandomLetter);
+    if(option == 'Upper'){
+      var generatedRandomLetter = generateRandomUppercaseLetter();
+      randomLettersArray.push(generatedRandomLetter);
+    } else if (option == 'Lower') {
+      var generatedRandomLetter = generateRandomLowercaseLetter();
+      randomLettersArray.push(generatedRandomLetter);
+    } else if (option == 'Both') {
+      var generatedRandomLetter = generateRandomUpperOrLowercaseLetter();
+      randomLettersArray.push(generatedRandomLetter);
+    }
   }
   return randomLettersArray.toString().replace(/,/g, '');
 }
@@ -64,9 +72,35 @@ function generateRandomSpecialCharacters(n) {
   return randomSpecialArray.toString().replace(/,/g, '');
 }
 
+function generateUpperLowerSpecialNumberPassword(n) {
+  var randomPasswordArray = [];
+  while (randomPasswordArray.length -1 <= n) {
+    var randomNumber = Math.floor(Math.random() * 3);
+    if (randomNumber != 3) {
+      if (randomNumber == 0) {
+        randomPasswordArray.push(generateRandomLetters(1, "Both"));
+      }
+      else if (randomNumber == 1) {
+        randomPasswordArray.push(generateRandomSpecialCharacters(1));
+      }
+      else if (randomNumber == 2) {
+        randomPasswordArray.push(generateRandomNumbers(1));
+      }
+    }
+  }
+  return randomPasswordArray.toString().replace(/,/g, '');;
+}
+
 // This is where we test
 function generatePassword() {
-  var generatedPassword = generateRandomSpecialCharacters(7);
+  var upper = true;
+  var lower = true;
+  var special = true;
+  var number = true;
+  if (upper === true && lower === true && special === true && number === true) {
+    
+  }
+  var generatedPassword = generateUpperLowerSpecialNumberPassword(7);
   return generatedPassword;
 }
 
