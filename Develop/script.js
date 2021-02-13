@@ -2,13 +2,10 @@
 var generateBtn = document.querySelector("#generate");
 
 // This function takes in some number (n). Within it, we are creating an array with which our for loop with run through.
-function generateRandomNumbers(n) {
-  var randomIntegersArray = [];
-  for (i=0; i < n; i++) {
-    randomIntegersArray.push(Math.floor(Math.random() * 10));
-  }
+function generateRandomNumber(n) {
+  var randomIntegerBetween0And9 = Math.floor(Math.random() * 10)
   // This returns our random group of numbers and converts them into a string and removes the commas between them.
-  return randomIntegersArray.toString().replace(/,/g, '');
+  return randomIntegerBetween0And9.toString();
 }
 
 // This function returns a random lower case letter.
@@ -38,21 +35,15 @@ function generateRandomUpperOrLowercaseLetter() {
 }
 
 // This function returns an array of random upper and lower case letters the size of n. 
-function generateRandomLetters(n, option) {
-  var randomLettersArray = [];
-  for (i=0; i < n; i++) {
+function generateRandomLetter(option) {
     if(option == 'Upper'){
       var generatedRandomLetter = generateRandomUppercaseLetter();
-      randomLettersArray.push(generatedRandomLetter);
     } else if (option == 'Lower') {
       var generatedRandomLetter = generateRandomLowercaseLetter();
-      randomLettersArray.push(generatedRandomLetter);
     } else if (option == 'Both') {
       var generatedRandomLetter = generateRandomUpperOrLowercaseLetter();
-      randomLettersArray.push(generatedRandomLetter);
     }
-  }
-  return randomLettersArray.toString().replace(/,/g, '');
+  return generatedRandomLetter;
 }
 
 // This function returns a random special character.
@@ -62,29 +53,19 @@ function generateRandomSpecialCharacter() {
   return specialCharacterOptions[randomNumber];
 }
 
-// This function returns an array of random special characters the size of n.
-function generateRandomSpecialCharacters(n) {
-  var randomSpecialArray = [];
-  for (i=0; i < n; i++) {
-    var generatedRandomSpecial = generateRandomSpecialCharacter();
-    randomSpecialArray.push(generatedRandomSpecial);
-  }
-  return randomSpecialArray.toString().replace(/,/g, '');
-}
-
 function generateUpperLowerSpecialNumberPassword(n) {
   var randomPasswordArray = [];
   while (randomPasswordArray.length -1 <= n) {
     var randomNumber = Math.floor(Math.random() * 3);
     if (randomNumber != 3) {
       if (randomNumber == 0) {
-        randomPasswordArray.push(generateRandomLetters(1, "Both"));
+        randomPasswordArray.push(generateRandomLetter("Both"));
       }
       else if (randomNumber == 1) {
-        randomPasswordArray.push(generateRandomSpecialCharacters(1));
+        randomPasswordArray.push(generateRandomSpecialCharacter());
       }
       else if (randomNumber == 2) {
-        randomPasswordArray.push(generateRandomNumbers(1));
+        randomPasswordArray.push(generateRandomNumber());
       }
     }
   }
@@ -98,9 +79,8 @@ function generatePassword() {
   var special = true;
   var number = true;
   if (upper === true && lower === true && special === true && number === true) {
-    
+    var generatedPassword = generateUpperLowerSpecialNumberPassword(7);
   }
-  var generatedPassword = generateUpperLowerSpecialNumberPassword(7);
   return generatedPassword;
 }
 
