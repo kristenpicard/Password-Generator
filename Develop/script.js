@@ -24,7 +24,15 @@ function generateRandomUppercaseLetter() {
 function generateRandomLetters(n) {
   var randomLettersArray = [];
   for (i=0; i < n; i++) {
-    randomLettersArray.push(generateRandomLowercaseLetter());
+    var randomNumberBetween0and9 = Math.floor(Math.random() * 10);
+    if (randomNumberBetween0and9 < 5) {
+      var generatedRandomLetter = generateRandomLowercaseLetter();
+    }
+    else { 
+      var generatedRandomLetter = generateRandomUppercaseLetter();
+    }
+    randomLettersArray.push(generatedRandomLetter);
+    
   }
   return randomLettersArray.toString().replace(/,/g, '');
 }
