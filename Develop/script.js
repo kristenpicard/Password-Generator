@@ -48,7 +48,7 @@ function generateRandomLetter(option) {
 
 // This function returns a random special character.
 function generateRandomSpecialCharacter() {
-  var specialCharacterOptions = ["!", "@", "#", "$", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]", ";", ":", "'", "\"", "\,", "<", ".", ">", "?", "/", "\\", "|", "~", "`"];
+  var specialCharacterOptions = ["!", "@", "#", "$", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]", ";", ":", "'", "\"", "<", ".", ">", "?", "/", "\\", "|", "~", "`"];
   var randomNumber = Math.floor(Math.random() * (specialCharacterOptions.length-1));
   return specialCharacterOptions[randomNumber];
 }
@@ -56,7 +56,7 @@ function generateRandomSpecialCharacter() {
 // This function returns a random set of characters.
 function generatePasswordBasedOnOptions(n, upper, lower, special, number) {
   var randomPasswordArray = [];
-  while (randomPasswordArray.length -1 <= n) {
+  while (randomPasswordArray.length < n) {
     var randomNumber = Math.floor(Math.random() * 5);
     if (randomNumber != 5) {
       if (randomNumber == 0 && upper == true && lower == true) {
