@@ -30,3 +30,16 @@ Finally, here is an example of a finished password:
 <br>
 ![6](Assets/6.png)
 
+## Installation
+Clone the repository at https://github.com/kristenpicard/Password-Generator and load it on
+code editor of your choice. Vscode is the prefered editor.
+
+## Credits
+Kristen Picard https://github.com/kristenpicard
+
+
+## License
+MIT License
+![test](https://img.shields.io/apm/l/test)
+
+
